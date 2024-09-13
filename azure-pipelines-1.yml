@@ -23,7 +23,7 @@ stages:
     steps: 
     - task: Docker@2
       inputs:
-        # containerRegistry: 'Docker ACR'
+        containerRegistry: 'Docker ACR'
         repository: $(imageRepository)
         command: 'buildAndPush'
         Dockerfile: $(dockerfilePath)
@@ -31,7 +31,7 @@ stages:
           latest
 
 variables:
-  # dockerRegistryServiceConnection: 'Docker ACR'
+  dockerRegistryServiceConnection: 'Docker ACR'
   imageRepository: 'atari/psyja8-example-app' #eg 'amiga/dan-webb-example-app'
   containerRegistry: 'acrbjssacademy.azurecr.io' # eg 'acrbjssacademy.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
