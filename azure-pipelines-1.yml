@@ -29,6 +29,20 @@ stages:
         Dockerfile: $(dockerfilePath)
         tags: |
           latest
+- stage: Test
+  displayName: 'Run tests'
+  dependsOn: Build
+  jobs:
+  - job: Test
+    displayName: 'Run tests'
+    pool:
+      vmImage: 'ubuntu-latest'  
+    steps:
+    - script: |
+        echo "Running tests..."
+        # Run the Go tests from the project directory
+        go test ./...
+      displayName: 'Run tests'
 
 variables:
   dockerRegistryServiceConnection: 'Docker ACR'
