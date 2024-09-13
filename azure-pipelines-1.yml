@@ -43,6 +43,22 @@ stages:
         # Run the Go tests from the project directory
         go test ./...
       displayName: 'Run tests'
+      
+- stage: Deploy
+  displayName: 'Deploy to Azure Web App'
+  dependsOn: Test
+  jobs:
+  - job: Deploy
+    displayName: 'Deploy Azure Web App'
+    pool:
+      vmImage: 'ubuntu-latest'  
+    steps:
+    - task: AzureWebAppContainer@1
+      displayName: 'Azure Web App on Container Deploy'
+      inputs:
+        azureSubscription: $(azureSubscription)
+        appName: $(appName)
+        containers: $(containerRegistry)/$(imageRepository):$(tag)
 
 variables:
   dockerRegistryServiceConnection: 'Docker ACR'
@@ -50,3 +66,5 @@ variables:
   containerRegistry: 'acrbjssacademy.azurecr.io' # eg 'acrbjssacademy.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: 'latest'
+  azureSubscription: 'Azure RM' # eg 'deploy-dan-webb-app-sc'
+  appName: 'acr-jack-anderson' # eg 'acr-dan-webb'  
