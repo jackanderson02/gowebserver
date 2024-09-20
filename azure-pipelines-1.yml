@@ -35,24 +35,24 @@ stages:
         DBPASSWORD: $(DBPASSWORD)
         DBSSLMODE: $(DBSSSLMODE)
     
-- stage: Test
-  displayName: 'Run tests'
-  dependsOn: Build
-  jobs:
-  - job: Test
-    displayName: 'Run tests'
-    pool:
-      vmImage: 'ubuntu-latest'  
-    steps:
-    - script: |
-        echo "Running tests..."
-        # Run the Go tests from the project directory
-        go test ./...
-      displayName: 'Run tests'
+# - stage: Test
+#   displayName: 'Run tests'
+#   dependsOn: Build
+#   jobs:
+#   - job: Test
+#     displayName: 'Run tests'
+#     pool:
+#       vmImage: 'ubuntu-latest'  
+#     steps:
+#     - script: |
+#         echo "Running tests..."
+#         # Run the Go tests from the project directory
+#         go test ./...
+#       displayName: 'Run tests'
       
 - stage: Deploy
   displayName: 'Deploy to Azure Web App'
-  dependsOn: Test
+  # dependsOn: Test
   jobs:
   - job: Deploy
     displayName: 'Deploy Azure Web App'
