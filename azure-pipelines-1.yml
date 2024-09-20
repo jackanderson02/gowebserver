@@ -76,7 +76,7 @@ variables:
 - name: dockerRegistryServiceConnection 
   value: 'Docker ACR'
 - name:  imageRepository
-  value: 'sinclair/Jack-Anderson-example-app'
+  value: 'sinclair/jack-anderson-example-app'
 - name: containerRegistry
   value: 'acrbjssacademy.azurecr.io'
 - name: dockerfilePath
