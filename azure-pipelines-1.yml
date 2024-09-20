@@ -86,4 +86,4 @@ variables:
 - name: azureSubscription
   value: 'Azure RM'
 - name: appName
-  value: 'app-jack-anderson'
+  value: 'acr-jack-anderson'
