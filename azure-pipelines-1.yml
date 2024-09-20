@@ -72,7 +72,7 @@ stages:
         DBSSLMODE: $(DBSSSLMODE)
 
 variables:
-- group: sinclair-app-variables
+# - group: sinclair-app-variables
 - name: dockerRegistryServiceConnection 
   value: 'Docker ACR'
 - name:  imageRepository
