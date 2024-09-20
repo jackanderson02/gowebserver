@@ -3,7 +3,7 @@ package config
 import (
 	"log"
 	"os"
-	"github.com/joho/godotenv"
+	// "github.com/joho/godotenv"
 )
 
 
@@ -29,6 +29,7 @@ func LoadDatabaseConfig(filename ...string) DatabaseConfig {
 	// if err != nil {
 	// 	log.Println(".env file not found, using environment variables")
 	// }
+	log.Println(os.Getenv("DBHOST"))
 
 	return DatabaseConfig{
 		Type:     os.Getenv("DBTYPE"),
