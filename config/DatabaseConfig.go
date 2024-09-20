@@ -19,16 +19,16 @@ type DatabaseConfig struct {
 func LoadDatabaseConfig(filename ...string) DatabaseConfig {
 	
 	// Default to ".env" if no filename is provided
-	envFile := ".env"
-	if len(filename) > 0 {
-		envFile = filename[0]
-	}
+	// envFile := ".env"
+	// if len(filename) > 0 {
+	// 	envFile = filename[0]
+	// }
 
-	// Load the specified .env file
-	err := godotenv.Load(envFile)
-	if err != nil {
-		log.Println(".env file not found, using environment variables")
-	}
+	// // Load the specified .env file
+	// err := godotenv.Load(envFile)
+	// if err != nil {
+	// 	log.Println(".env file not found, using environment variables")
+	// }
 
 	return DatabaseConfig{
 		Type:     os.Getenv("DBTYPE"),
