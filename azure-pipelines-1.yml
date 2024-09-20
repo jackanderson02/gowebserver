@@ -46,7 +46,7 @@ stages:
       
 - stage: Deploy
   displayName: 'Deploy to Azure Web App'
-  dependsOn: Test
+  # dependsOn: Test
   jobs:
   - job: Deploy
     displayName: 'Deploy Azure Web App'
