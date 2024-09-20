@@ -21,7 +21,7 @@ func CorsMiddleware(next http.Handler) http.Handler {
 func main() {
 
 	// Initialize the database connection
-	config := config.LoadDatabaseConfig(".env.remotedb")
+	config := config.LoadDatabaseConfig(".env")
 	dbRepo, err := initializeDatabase(config)
 	if err != nil {
 		fmt.Println("Error initializing the database:", err)
