@@ -1,0 +1,38 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+resources:
+- repo: self
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+- stage: Build
+  displayName: 'Build and push Docker image'
+  jobs:
+  - job: Build
+    displayName: 'Build'
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps: 
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'Docker ACR'
+        repository: $(imageRepository)
+        command: 'buildAndPush'
+        Dockerfile: $(dockerfilePath)
+        tags: |
+                 $tag
+
+variables:
+  dockerRegistryServiceConnection: 'Docker ACR'
+  imageRepository: 'amiga/jack-anderson-example-app' #eg 'amiga/dan-webb-example-app'
+  containerRegistry: 'acrbjssacademy.azurecr.io' # eg 'acrbjssacademy.azurecr.io'
+  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
+  tag: '$(Build.BuildId)'
